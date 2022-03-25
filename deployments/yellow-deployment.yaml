@@ -1,0 +1,22 @@
+# create mode 100644 exploringVolumes/emptydir-volume-test.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yellow-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yellow-test
+      color: yellow
+  template:
+    metadata:
+      labels:
+        app: yellow-test
+        color: yellow
+    spec:
+      containers:
+      - name: nginx
+        image: linuxacademycontent/ckad-nginx:yellow
+        ports:
+         - containerPort: 80
