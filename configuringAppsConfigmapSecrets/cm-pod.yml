@@ -7,4 +7,22 @@ spec:
   containers:
    - name: busybox
      image: busybox:stable
-     command: ['sh', '-c', 'echo $MESSAGE; cat /config/app.cfg'
+     command: ['sh', '-c', 'echo $MESSAGE; cat /config/app.cfg' ]
+     env:
+     - name: MESSAGE
+       valueFrom:
+         configMapKeyRef: 
+          name: my-configmap
+          key: message
+     volumeMounts:
+     - name: config
+       mountPath: /config
+       readOnly: true  
+  volumes:
+  - name: config
+    configMap:
+      name: my-configmap
+      items:
+      - key: app.cfg
+        path: app.cfg
+
