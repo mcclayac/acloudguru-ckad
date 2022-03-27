@@ -1,0 +1,22 @@
+# create mode 100644 exploringVolumes/emptydir-volume-test.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orange-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orange-test
+      color: orange
+  template:
+    metadata:
+      labels:
+        app: orange-test
+        color: orange
+    spec:
+      containers:
+      - name: nginx
+        image: linuxacademycontent/ckad-nginx:orange
+        ports:
+         - containerPort: 80

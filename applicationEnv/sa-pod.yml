@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: sa-pod
+  name: sa-pod
+spec:
+  serviceAccount: my-sa
+  containers:
+  - image: radial/busyboxplus:curl
+    name: sa-pod
+    command: ['sh', '-c', 'while true; do curl -s --header "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt https://kubernetes/api/v1/namespaces/default/pods; sleep 5; done']
