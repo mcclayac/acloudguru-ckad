@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  key1: value1
+  key2: literal2
+  message: Hello worlds2!
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: my-configmap2
