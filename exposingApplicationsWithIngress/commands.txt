@@ -1,0 +1,3 @@
+k8 expose pod ingress-test-pod --name=ingress-test-service --port=80 --target-port=8080 --type=ClusterIP --dry-run=client -o=yaml > ingress-test-service.yml
+
+
